@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form-signin">
+  <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onSubmit()">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email</label>
     <input
@@ -9,6 +9,7 @@
       placeholder="Email address"
       required
       autofocus
+      formControlName="email"
     />
     <label for="inputPassword" class="sr-only">Password</label>
     <input
@@ -17,6 +18,7 @@
       class="form-control"
       placeholder="Password"
       required
+      formControlName="password"
     />
     <div class="checkbox mb-3">
       <label>
@@ -24,7 +26,11 @@
         Remember me
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
+    <button
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
       Sign in
     </button>
     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
